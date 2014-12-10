@@ -1,6 +1,40 @@
-# Case Insensitive Enum Converter #
+# Case Insensitive Enum Converter [![](https://img.shields.io/nuget/v/Aliencube.CaseInsensitiveEnumConverter.svg)](https://www.nuget.org/packages/Aliencube.CaseInsensitiveEnumConverter/) [![](https://img.shields.io/nuget/dt/Aliencube.CaseInsensitiveEnumConverter.svg)](https://www.nuget.org/packages/Aliencube.CaseInsensitiveEnumConverter/) #
 
 **Case Insensitive Enum Converter (CIEC)** provides an enum value converter for configuration sectionis from `App.config` or `Web.config`.
+
+
+## Getting Started ##
+
+The following `App.config` sample can be found at [https://github.com/aliencube/Case-Insensitive-Enum-Converter/blob/master/SourceCodes/01_Configs/EnumConverter.Configs/App.config](https://github.com/aliencube/Case-Insensitive-Enum-Converter/blob/master/SourceCodes/01_Configs/EnumConverter.Configs/App.config)
+
+```xml
+<configuration>
+  <configSections>
+    <section name="enumConverterSettings" type="Aliencube.EnumConverter.Configs.EnumConverterSettings, Aliencube.EnumConverter.Configs" requirePermission="false" />
+  </configSections>
+
+  <enumConverterSettings>
+    <product status="active" />
+  </enumConverterSettings>
+</configuration>
+```
+
+As you can see above, the `product` element has an attribute of `status`. This attribute can have either `active` or `inactive` as an enum value. In order for the attribute to be convertible without case-sensitivity, the configuration section element can be defined:
+
+```csharp
+public class ProductElement : ConfigurationElement
+{
+  [ConfigurationProperty("status", IsRequired = true)]
+  [TypeConverter(typeof(CaseInsensitiveEnumConverter<ProductStatus>))]
+  public ProductStatus Status
+  {
+    get { return (ProductStatus)this["status"]; }
+    set { this["status"] = value; }
+  }
+}
+```
+
+Once the `TypeConverter` attribute class is declared, with `CaseInsensitiveEnumConverter<TEnum>` type, any value such as `ACTIVE`, `Active`, or `active` can be set.
 
 
 ## Contribution ##

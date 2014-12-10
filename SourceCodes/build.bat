@@ -1,5 +1,7 @@
 @echo off
 
+IF [%1]==[] GOTO MissingApiKey
+
 reg.exe query "HKLM\SOFTWARE\Microsoft\MSBuild\ToolsVersions\4.0" /v MSBuildToolsPath > nul 2>&1
 if ERRORLEVEL 1 goto MissingMSBuildRegistry
 
@@ -15,6 +17,9 @@ IF NOT EXIST %MSBUILDDIR%msbuild.exe goto MissingMSBuildExe
 mkdir build
 del "build\*.nupkg"
 
+::SET API KEY
+"tools\nuget.exe" setApiKey %1
+
 ::PACK
 "tools\nuget.exe" pack "02_Apps\EnumConverter\EnumConverter.nuspec" -OutputDirectory build
 
@@ -24,6 +29,9 @@ del "build\*.nupkg"
 goto:eof
 ::ERRORS
 ::---------------------
+:MissingApiKey
+echo API Key not found
+goto:eof
 :MissingMSBuildRegistry
 echo Cannot obtain path to MSBuild tools from registry
 goto:eof

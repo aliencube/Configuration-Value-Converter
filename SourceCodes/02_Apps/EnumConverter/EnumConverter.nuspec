@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>Aliencube.CaseInsensitiveEnumConverter</id>
+        <version>1.0.0</version>
+        <title>Case Insensitive Enum Converter</title>
+        <authors>Aliencube Community</authors>
+        <owners>aliencube</owners>
+        <licenseUrl>https://github.com/aliencube/Case-Insensitive-Enum-Converter/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/aliencube/Case-Insensitive-Enum-Converter</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Case Insensitive Enum Converter enables enum values to be case-insensitive in configuration sectionis from App.config or Web.config</description>
+        <copyright>Copyright 2014</copyright>
+        <tags>TypeConverter, System.Configuration, Enum</tags>
+        <dependencies />
+    </metadata>
+    <files>
+        <file src="bin\Release\**\Aliencube.EnumConverter.*" target="lib" />
+    </files>
+</package>

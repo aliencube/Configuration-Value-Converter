@@ -1,6 +1,6 @@
 # Configuration Value Converter #
 
-**Configuration Value Converter (CVC)** provides an enum value converter for configuration sectionis from `App.config` or `Web.config`.
+**Configuration Value Converter (CVC)** provides configuration value converters for configuration sections from `App.config` or `Web.config`.
 
 
 ## Package Status ##

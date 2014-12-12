@@ -42,7 +42,7 @@ namespace Aliencube.ConfigurationConverters
             }
 
             var segments = ((string)value).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            var result = segments.Select(p => (T)Convert.ChangeType(p, typeof(T))).ToList();
+            var result = segments.Select(p => (T)Convert.ChangeType(p.Trim(), typeof(T))).ToList();
             return result;
         }
 

@@ -11,8 +11,9 @@ IF NOT EXIST %MSBUILDDIR%nul goto MissingMSBuildToolsPath
 IF NOT EXIST %MSBUILDDIR%msbuild.exe goto MissingMSBuildExe
 
 ::BUILD
-"tools\nuget.exe" restore EnumConverter.sln 
-"%MSBUILDDIR%msbuild.exe" "02_Apps\EnumConverter\EnumConverter.csproj" /t:ReBuild /p:Configuration=Release;TargetFrameworkVersion=v4.5;DefineConstants="TRACE;NET45";OutPutPath=bin\Release\net45\;DocumentationFile=bin\Release\net45\EnumConverter.xml
+"tools\nuget.exe" restore ConfigurationValueConverter.sln
+"%MSBUILDDIR%msbuild.exe" "02_Apps\EnumConverter\EnumConverter.csproj" /t:ReBuild /p:Configuration=Release;TargetFrameworkVersion=v4.5;DefineConstants="TRACE;NET45";OutPutPath=bin\Release\net45\;DocumentationFile=bin\Release\net45\Aliencube.CaseInsensitiveEnumConverter.xml
+"%MSBUILDDIR%msbuild.exe" "02_Apps\ListConverter\ListConverter.csproj" /t:ReBuild /p:Configuration=Release;TargetFrameworkVersion=v4.5;DefineConstants="TRACE;NET45";OutPutPath=bin\Release\net45\;DocumentationFile=bin\Release\net45\Aliencube.CommaDelimitedListConverter.xml
 
 mkdir build
 del "build\*.nupkg"
@@ -22,6 +23,7 @@ del "build\*.nupkg"
 
 ::PACK
 "tools\nuget.exe" pack "02_Apps\EnumConverter\EnumConverter.nuspec" -OutputDirectory build
+"tools\nuget.exe" pack "02_Apps\ListConverter\ListConverter.nuspec" -OutputDirectory build
 
 ::DEPLOY
 "tools\nuget.exe" push "build\*.nupkg"

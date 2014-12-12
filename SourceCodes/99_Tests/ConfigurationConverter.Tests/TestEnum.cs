@@ -1,4 +1,4 @@
-﻿namespace Aliencube.EnumConverter.Tests
+﻿namespace Aliencube.ConfigurationConverter.Tests
 {
     public enum TestEnum
     {

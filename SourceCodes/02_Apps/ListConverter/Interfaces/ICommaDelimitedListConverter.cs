@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Globalization;
 
 namespace Aliencube.ConfigurationConverters.Interfaces
 {
     /// <summary>
-    /// This provides interfaces to the <c>CaseInsensitiveEnumConverter</c> class.
+    /// This provides interfaces to the <c>CommaDelimitedListConverter</c> class.
     /// </summary>
-    public interface ICaseInsensitiveEnumConverter : IDisposable
+    public interface ICommaDelimitedListConverter : IDisposable
     {
         /// <summary>
         /// Returns whether this converter can convert an object of the given type to the type of this converter, using the specified context.

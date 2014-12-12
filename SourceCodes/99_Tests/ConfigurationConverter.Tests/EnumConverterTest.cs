@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
-using Aliencube.EnumConverter.Interfaces;
+using Aliencube.ConfigurationConverters;
+using Aliencube.ConfigurationConverters.Interfaces;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Aliencube.EnumConverter.Tests
+namespace Aliencube.ConfigurationConverter.Tests
 {
     [TestFixture]
     public class EnumConverterTest

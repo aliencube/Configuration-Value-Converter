@@ -1,21 +1,27 @@
-# Case Insensitive Enum Converter [![](https://img.shields.io/nuget/v/Aliencube.CaseInsensitiveEnumConverter.svg)](https://www.nuget.org/packages/Aliencube.CaseInsensitiveEnumConverter/) [![](https://img.shields.io/nuget/dt/Aliencube.CaseInsensitiveEnumConverter.svg)](https://www.nuget.org/packages/Aliencube.CaseInsensitiveEnumConverter/) #
+# Configuration Value Converter #
 
-**Case Insensitive Enum Converter (CIEC)** provides an enum value converter for configuration sectionis from `App.config` or `Web.config`.
+**Configuration Value Converter (CVC)** provides an enum value converter for configuration sectionis from `App.config` or `Web.config`.
+
+
+## Package Status ##
+
+* **Case Insensitive Enum Value Converter** [![](https://img.shields.io/nuget/v/Aliencube.CaseInsensitiveEnumConverter.svg)](https://www.nuget.org/packages/Aliencube.CaseInsensitiveEnumConverter/) [![](https://img.shields.io/nuget/dt/Aliencube.CaseInsensitiveEnumConverter.svg)](https://www.nuget.org/packages/Aliencube.CaseInsensitiveEnumConverter/)
+* **Comma Delimited List Value Converter** [![](https://img.shields.io/nuget/v/Aliencube.CommaDelimitedListConverter.svg)](https://www.nuget.org/packages/Aliencube.CommaDelimitedListConverter/) [![](https://img.shields.io/nuget/dt/Aliencube.CommaDelimitedListConverter.svg)](https://www.nuget.org/packages/Aliencube.CommaDelimitedListConverter/)
 
 
 ## Getting Started ##
 
-The following `App.config` sample can be found at [https://github.com/aliencube/Case-Insensitive-Enum-Converter/blob/master/SourceCodes/01_Configs/EnumConverter.Configs/App.config](https://github.com/aliencube/Case-Insensitive-Enum-Converter/blob/master/SourceCodes/01_Configs/EnumConverter.Configs/App.config)
+The following `App.config` sample can be found at [https://github.com/aliencube/Configuration-Value-Converter/blob/master/SourceCodes/01_Configs/ConfigurationValueConverter.Configs/App.config](https://github.com/aliencube/Configuration-Value-Converter/blob/master/SourceCodes/01_Configs/ConfigurationValueConverter.Configs/App.config)
 
 ```xml
 <configuration>
   <configSections>
-    <section name="enumConverterSettings" type="Aliencube.EnumConverter.Configs.EnumConverterSettings, Aliencube.EnumConverter.Configs" requirePermission="false" />
+    <section name="converterSettings" type="Aliencube.ConfigurationValueConverter.Configs.ConverterSettings, Aliencube.ConfigurationValueConverter.Configs" requirePermission="false" />
   </configSections>
 
-  <enumConverterSettings>
-    <product status="active" />
-  </enumConverterSettings>
+  <converterSettings>
+    <product status="active" productIds="1,2,3" />
+  </converterSettings>
 </configuration>
 ```
 
@@ -31,10 +37,19 @@ public class ProductElement : ConfigurationElement
     get { return (ProductStatus)this["status"]; }
     set { this["status"] = value; }
   }
+
+  [ConfigurationProperty("productIds", IsRequired = true)]
+  [TypeConverter(typeof(CommaDelimitedListConverter<int>))]
+  public List<int> ProductIds
+  {
+    get { return (List<int>)this["productIds"]; }
+    set { this["productIds"] = value; }
+  }
 }
 ```
 
-Once the `TypeConverter` attribute class is declared, with `CaseInsensitiveEnumConverter<TEnum>` type, any value such as `ACTIVE`, `Active`, or `active` can be set.
+* Once the `TypeConverter` attribute class is declared, with `CaseInsensitiveEnumConverter<TEnum>` type, any value such as `ACTIVE`, `Active`, or `active` can be set.
+* Once the `TypeConverter` attribute class is declared, with `CommaDelimitedListConverter<T>` type, any value such as `1,2,3` can be converted to a `List<int>` object.
 
 
 ## Contribution ##
@@ -44,7 +59,7 @@ Your contribution is always welcome! All your work should be done in the`dev` br
 
 ## License ##
 
-**CIEC** is released under [MIT License](http://opensource.org/licenses/MIT).
+**CVC** is released under [MIT License](http://opensource.org/licenses/MIT).
 
 > The MIT License (MIT)
 > 

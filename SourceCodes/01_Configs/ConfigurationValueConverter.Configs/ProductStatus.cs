@@ -1,4 +1,4 @@
-﻿namespace Aliencube.EnumConverter.Configs
+﻿namespace Aliencube.ConfigurationValueConverter.Configs
 {
     /// <summary>
     /// This determines the product status.

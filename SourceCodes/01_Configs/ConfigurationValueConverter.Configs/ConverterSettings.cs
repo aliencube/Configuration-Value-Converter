@@ -1,12 +1,12 @@
 ﻿using System.Configuration;
-using Aliencube.EnumConverter.Configs.Interfaces;
+using Aliencube.ConfigurationValueConverter.Configs.Interfaces;
 
-namespace Aliencube.EnumConverter.Configs
+namespace Aliencube.ConfigurationValueConverter.Configs
 {
     /// <summary>
-    /// This represents the <c>ConfigurationSection</c> entity defined in either App.config or Web.config.
+    /// This represents the <c>ConverterSettings</c> entity defined in either App.config or Web.config.
     /// </summary>
-    public class EnumConverterSettings : ConfigurationSection, IEnumConverterSettings
+    public class ConverterSettings : ConfigurationSection, IConverterSettings
     {
         private bool _disposed;
 
@@ -21,12 +21,12 @@ namespace Aliencube.EnumConverter.Configs
         }
 
         /// <summary>
-        /// Creates a new instance of the <c>EnumConverterSettings</c> class.
+        /// Creates a new instance of the <c>ConverterSettings</c> class.
         /// </summary>
-        /// <returns>Returns the new instance of the <c>EnumConverterSettings</c> class.</returns>
-        public static IEnumConverterSettings CreateInstance()
+        /// <returns>Returns the new instance of the <c>ConverterSettings</c> class.</returns>
+        public static IConverterSettings CreateInstance()
         {
-            var settings = ConfigurationManager.GetSection("enumConverterSettings") as IEnumConverterSettings;
+            var settings = ConfigurationManager.GetSection("converterSettings") as IConverterSettings;
             return settings;
         }
 

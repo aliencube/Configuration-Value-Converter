@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
 using Aliencube.ConfigurationConverters.Interfaces;
 
 namespace Aliencube.ConfigurationConverters
@@ -9,9 +10,8 @@ namespace Aliencube.ConfigurationConverters
     /// <summary>
     /// This represents a converter entity to convert string to enum value.
     /// </summary>
-    /// <typeparam name="TEnum">Enum type.</typeparam>
-    /// <remarks>Refer to the page http://msdn.microsoft.com/en-us/library/System.Configuration.ConfigurationConverterBase(v=vs.110).aspx .</remarks>
-    public class CaseInsensitiveEnumConverter<TEnum> : ConfigurationConverterBase, ICaseInsensitiveEnumConverter where TEnum : struct
+    /// <typeparam name="T">Enum type.</typeparam>
+    public class CommaDelimitedListConverter<T> : ConfigurationConverterBase, ICommaDelimitedListConverter
     {
         private bool _disposed;
 
@@ -23,7 +23,7 @@ namespace Aliencube.ConfigurationConverters
         /// <returns>Returns <c>True</c>, if this converter can perform the conversion; otherwise returns <c>False</c>.</returns>
         public override bool CanConvertFrom(ITypeDescriptorContext ctx, Type type)
         {
-            var result = type == typeof(TEnum);
+            var result = type == typeof(T);
             return result;
         }
 
@@ -41,12 +41,8 @@ namespace Aliencube.ConfigurationConverters
                 throw new ArgumentNullException("value");
             }
 
-            TEnum result;
-            if (!Enum.TryParse((string)value, true, out result))
-            {
-                throw new InvalidOperationException("Invalid enum value");
-            }
-
+            var segments = ((string)value).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            var result = segments.Select(p => (T)Convert.ChangeType(p, typeof(T))).ToList();
             return result;
         }
 

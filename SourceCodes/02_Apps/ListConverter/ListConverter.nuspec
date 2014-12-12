@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <package >
     <metadata>
-        <id>Aliencube.CaseInsensitiveEnumConverter</id>
+        <id>Aliencube.CommaDelimitedListConverter</id>
         <version>1.0.0.0</version>
-        <title>Case Insensitive Enum Value Converter</title>
+        <title>Comma Delimited List Value Converter</title>
         <authors>Aliencube Community</authors>
         <owners>aliencube</owners>
         <licenseUrl>https://github.com/aliencube/Configuration-Value-Converter/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/aliencube/Configuration-Value-Converter</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>Case Insensitive Enum Value Converter enables enum values to be case-insensitive in configuration sectionis from App.config or Web.config</description>
+        <description>Comma Delimited List Value Converter enables comma delimited string values to be a list in configuration sectionis from App.config or Web.config</description>
         <copyright>Copyright 2014</copyright>
-        <tags>Aliencube, TypeConverter, System.Configuration, Enum</tags>
+        <tags>Aliencube, TypeConverter, System.Configuration, List</tags>
         <dependencies />
     </metadata>
     <files>
-        <file src="bin\Release\**\Aliencube.CaseInsensitiveEnumConverter.*" target="lib" />
+        <file src="bin\Release\**\Aliencube.CommaDelimitedListConverter.*" target="lib" />
     </files>
 </package>

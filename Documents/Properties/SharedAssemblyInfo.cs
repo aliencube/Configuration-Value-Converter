@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyCompany("Aliencube Community")]
-[assembly: AssemblyProduct("Case Insensitive Enum Converter")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyProduct("Configuration Value Converter")]
+[assembly: AssemblyCopyright("Copyright © 2014")]
 [assembly: AssemblyTrademark("Aliencube")]
 [assembly: AssemblyCulture("")]
 

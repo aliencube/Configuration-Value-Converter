@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 
-namespace Aliencube.EnumConverter.Configs.Interfaces
+namespace Aliencube.ConfigurationValueConverter.Configs.Interfaces
 {
     /// <summary>
     /// This provides interfaces to the <c>EnumConverterSettings</c> class.
     /// </summary>
-    public interface IEnumConverterSettings : IDisposable
+    public interface IConverterSettings : IDisposable
     {
         /// <summary>
         /// Gets or sets the product element.

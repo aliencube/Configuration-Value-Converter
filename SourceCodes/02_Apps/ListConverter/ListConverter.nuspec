@@ -2,7 +2,7 @@
 <package >
     <metadata>
         <id>Aliencube.CommaDelimitedListConverter</id>
-        <version>1.0.0.0</version>
+        <version>1.0.0.1</version>
         <title>Comma Delimited List Value Converter</title>
         <authors>Aliencube Community</authors>
         <owners>aliencube</owners>

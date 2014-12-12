@@ -2,7 +2,7 @@
 <package >
     <metadata>
         <id>Aliencube.CaseInsensitiveEnumConverter</id>
-        <version>1.0.0.0</version>
+        <version>1.0.0.1</version>
         <title>Case Insensitive Enum Value Converter</title>
         <authors>Aliencube Community</authors>
         <owners>aliencube</owners>

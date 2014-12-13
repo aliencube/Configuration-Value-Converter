@@ -2,7 +2,7 @@
 <package >
     <metadata>
         <id>Aliencube.CommaDelimitedListConverter</id>
-        <version>1.0.0.1</version>
+        <version>1.0.0.2</version>
         <title>Comma Delimited List Value Converter</title>
         <authors>Aliencube Community</authors>
         <owners>aliencube</owners>
@@ -10,7 +10,7 @@
         <projectUrl>https://github.com/aliencube/Configuration-Value-Converter</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Comma Delimited List Value Converter enables comma delimited string values to be a list in configuration sectionis from App.config or Web.config</description>
-        <copyright>Copyright 2014</copyright>
+        <copyright>Aliencube Community Copyright 2014</copyright>
         <tags>Aliencube, TypeConverter, System.Configuration, List</tags>
         <dependencies />
     </metadata>

@@ -10,7 +10,7 @@ namespace Aliencube.ConfigurationConverters
     /// <summary>
     /// This represents a converter entity to convert string to enum value.
     /// </summary>
-    /// <typeparam name="T">Enum type.</typeparam>
+    /// <typeparam name="T">Type to be listed.</typeparam>
     public class CommaDelimitedListConverter<T> : ConfigurationConverterBase, ICommaDelimitedListConverter
     {
         private bool _disposed;
@@ -42,7 +42,31 @@ namespace Aliencube.ConfigurationConverters
             }
 
             var segments = ((string)value).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            var result = segments.Select(p => (T)Convert.ChangeType(p.Trim(), typeof(T))).ToList();
+            var result = segments.Select(p => (T) ChangeType(typeof (T), p.Trim())).ToList();
+            return result;
+        }
+
+        /// <summary>
+        /// Changes type of the given value.
+        /// </summary>
+        /// <param name="type">Type to convert.</param>
+        /// <param name="value">Value to convert.</param>
+        /// <returns>Returns the value whose type is changed.</returns>
+        private static object ChangeType(Type type, string value)
+        {
+            if (type == null)
+            {
+                throw new ArgumentNullException("type");
+            }
+
+            object result;
+            if (type.IsEnum)
+            {
+                result = Enum.Parse(type, value, true);
+                return result;
+            }
+
+            result = Convert.ChangeType(value, type);
             return result;
         }
 

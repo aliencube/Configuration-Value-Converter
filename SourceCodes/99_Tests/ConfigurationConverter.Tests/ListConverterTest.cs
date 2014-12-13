@@ -37,6 +37,7 @@ namespace Aliencube.ConfigurationConverter.Tests
         [Test]
         [TestCase(typeof(int), true)]
         [TestCase(typeof(string), true)]
+        [TestCase(typeof(TestEnum), true)]
         public void CanConvertFrom_GivenType_ReturnValue(Type type, bool expected)
         {
             if (type == typeof(int))
@@ -46,6 +47,10 @@ namespace Aliencube.ConfigurationConverter.Tests
             else if (type == typeof(string))
             {
                 this._converter = new CommaDelimitedListConverter<string>();
+            }
+            else if (type == typeof (TestEnum))
+            {
+                this._converter = new CommaDelimitedListConverter<TestEnum>();
             }
 
             var result = this._converter.CanConvertFrom(this._context, type);
@@ -72,11 +77,15 @@ namespace Aliencube.ConfigurationConverter.Tests
                 return;
             }
 
-            var expected = value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => Convert.ToInt32(p)).ToList();
+            var expected = value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => Convert.ToInt32(p.Trim())).ToList();
             var result = this._converter.ConvertFrom(this._context, this._culture, value) as List<int>;
             result.Should().NotBeNull();
             result.Should().BeOfType<List<int>>();
             result.Should().HaveCount(expected.Count);
+            for (var i = 0; i < expected.Count; i++)
+            {
+                result[i].Should().Be(expected[i]);
+            }
         }
 
         [Test]
@@ -99,11 +108,46 @@ namespace Aliencube.ConfigurationConverter.Tests
                 return;
             }
 
-            var expected = value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var expected = value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToList();
             var result = this._converter.ConvertFrom(this._context, this._culture, value) as List<string>;
             result.Should().NotBeNull();
             result.Should().BeOfType<List<string>>();
             result.Should().HaveCount(expected.Count);
+            for (var i = 0; i < expected.Count; i++)
+            {
+                result[i].Should().Be(expected[i]);
+            }
+        }
+
+        [Test]
+        [TestCase("Test0,Test1,Test2", null)]
+        [TestCase("", null)]
+        [TestCase(null, typeof(ArgumentNullException))]
+        public void GetConverted_GivenEnumValue_ReturnConverted(string value, Type exceptionType)
+        {
+            this._converter = new CommaDelimitedListConverter<TestEnum>();
+
+            if (exceptionType != null)
+            {
+                Action action = () => this._converter.ConvertFrom(this._context, this._culture, value);
+
+                if (exceptionType == typeof(ArgumentNullException))
+                {
+                    action.ShouldThrow<ArgumentNullException>();
+                }
+
+                return;
+            }
+
+            var expected = value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => (TestEnum)Enum.Parse(typeof(TestEnum), p.Trim(), true)).ToList();
+            var result = this._converter.ConvertFrom(this._context, this._culture, value) as List<TestEnum>;
+            result.Should().NotBeNull();
+            result.Should().BeOfType<List<TestEnum>>();
+            result.Should().HaveCount(expected.Count);
+            for (var i = 0; i < expected.Count; i++)
+            {
+                result[i].Should().Be(expected[i]);
+            }
         }
     }
 }

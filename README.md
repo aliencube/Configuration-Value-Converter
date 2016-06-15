@@ -12,16 +12,18 @@ The following `App.config` sample can be found at [https://github.com/aliencube/
 ```xml
 <configuration>
   <configSections>
-    <section name="converterSettings" type="Aliencube.ConfigurationValueConverter.Configs.ConverterSettings, Aliencube.ConfigurationValueConverter.Configs" requirePermission="false" />
+    <section name="converterSettings" 
+             type="Aliencube.ConfigurationValueConverter.Configs.ConverterSettings, Aliencube.ConfigurationValueConverter.Configs" requirePermission="false" />
   </configSections>
 
   <converterSettings>
-    <product status="active" productIds="1,2,3" status="ProductA|ProductC" />
+    <product status="active" productIds="1,2,3" types="ProductA|ProductC" />
   </converterSettings>
 </configuration>
 ```
 
-As you can see above, the `product` element has an attribute of `status`. This attribute can have either `active` or `inactive` as an enum value. In order for the attribute to be convertible without case-sensitivity, the configuration section element can be defined:
+
+## `CaseInsensitiveEnumConverter` ##
 
 ```csharp
 public class ProductElement : ConfigurationElement
@@ -33,7 +35,17 @@ public class ProductElement : ConfigurationElement
     get { return (ProductStatus)this["status"]; }
     set { this["status"] = value; }
   }
+}
+```
 
+If the `TypeConverter` attribute class is declared with `CaseInsensitiveEnumConverter<ProductStatus>` type, any value such as `ACTIVE`, `Active`, or `active` representing `ProductStatus.Active` is allowed into `App.config` or `Web.config`.
+
+
+## `CommaDelimitedListConverter` ##
+
+```csharp
+public class ProductElement : ConfigurationElement
+{
   [ConfigurationProperty("productIds", IsRequired = true)]
   [TypeConverter(typeof(CommaDelimitedListConverter<int>))]
   public List<int> ProductIds
@@ -41,7 +53,17 @@ public class ProductElement : ConfigurationElement
     get { return (List<int>)this["productIds"]; }
     set { this["productIds"] = value; }
   }
+}
+```
 
+If the `TypeConverter` attribute class is declared with `CommaDelimitedListConverter<int>` type, any value such as `1,2,3` can be converted to a `List<int>` instance containing `1`, `2` and `3`.
+
+
+## `PipeDelimitedFlaggedEnumConverter` ##
+
+```csharp
+public class ProductElement : ConfigurationElement
+{
   [ConfigurationProperty("types", IsRequired = true)]
   [TypeConverter(typeof(PipeDelimitedFlaggedEnumConverter<ProductTypes>))]
   public ProductTypes Types
@@ -52,9 +74,7 @@ public class ProductElement : ConfigurationElement
 }
 ```
 
-* Once the `TypeConverter` attribute class is declared, with `CaseInsensitiveEnumConverter<TEnum>` type, any value such as `ACTIVE`, `Active`, or `active` can be set.
-* Once the `TypeConverter` attribute class is declared, with `CommaDelimitedListConverter<T>` type, any value such as `1,2,3` can be converted to a `List<int>` object.
-* Once the `TypeConverter` attribute class is declared, with `PipeDelimitedFlaggedEnumConverter<TEnum>` type, enum values delimited by a pipe sign (`|`) can be converted to a flagged enum.
+If the `TypeConverter` attribute class is declared with `PipeDelimitedFlaggedEnumConverter<ProductTypes>` type, enum values delimited by a pipe sign (`|`) can be converted to a flagged enum.
 
 
 ## Contribution ##

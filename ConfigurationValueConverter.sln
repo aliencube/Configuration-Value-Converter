@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{66598664-B00D-4207-8882-0E81FADDF3B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7ADB39AC-9828-43DA-B834-A640F3CE9ACD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationValueConverter", "src\ConfigurationValueConverter\ConfigurationValueConverter.csproj", "{0BDA8EC3-140E-4AD0-ADA4-A65DE0612A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationValueConverter.Configs", "src\ConfigurationValueConverter.Configs\ConfigurationValueConverter.Configs.csproj", "{778A95FA-3896-4226-962B-19BA8A18F888}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C6346797-CA09-4FBA-928B-9C815AC3C8EC}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		build.bat = build.bat
+		ConfigurationValueConverter.sln.DotSettings = ConfigurationValueConverter.sln.DotSettings
+		LICENSE = LICENSE
+		README.md = README.md
+		Settings.StyleCop = Settings.StyleCop
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationValueConverter.Tests", "test\ConfigurationValueConverter.Tests\ConfigurationValueConverter.Tests.csproj", "{2E453B6A-75CF-42A3-8F42-2F994B913504}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BDA8EC3-140E-4AD0-ADA4-A65DE0612A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BDA8EC3-140E-4AD0-ADA4-A65DE0612A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BDA8EC3-140E-4AD0-ADA4-A65DE0612A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BDA8EC3-140E-4AD0-ADA4-A65DE0612A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{778A95FA-3896-4226-962B-19BA8A18F888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{778A95FA-3896-4226-962B-19BA8A18F888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{778A95FA-3896-4226-962B-19BA8A18F888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{778A95FA-3896-4226-962B-19BA8A18F888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E453B6A-75CF-42A3-8F42-2F994B913504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E453B6A-75CF-42A3-8F42-2F994B913504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E453B6A-75CF-42A3-8F42-2F994B913504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E453B6A-75CF-42A3-8F42-2F994B913504}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0BDA8EC3-140E-4AD0-ADA4-A65DE0612A16} = {66598664-B00D-4207-8882-0E81FADDF3B4}
+		{778A95FA-3896-4226-962B-19BA8A18F888} = {66598664-B00D-4207-8882-0E81FADDF3B4}
+		{2E453B6A-75CF-42A3-8F42-2F994B913504} = {7ADB39AC-9828-43DA-B834-A640F3CE9ACD}
+	EndGlobalSection
+EndGlobal

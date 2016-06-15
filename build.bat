@@ -1,6 +1,6 @@
 @echo off
 
-IF [%1]==[] GOTO MissingApiKey
+REM IF [%1]==[] GOTO MissingApiKey
 
 reg.exe query "HKLM\SOFTWARE\Microsoft\MSBuild\ToolsVersions\4.0" /v MSBuildToolsPath > nul 2>&1
 if ERRORLEVEL 1 goto MissingMSBuildRegistry
@@ -12,21 +12,19 @@ IF NOT EXIST %MSBUILDDIR%msbuild.exe goto MissingMSBuildExe
 
 ::BUILD
 "tools\nuget.exe" restore ConfigurationValueConverter.sln
-"%MSBUILDDIR%msbuild.exe" "02_Apps\EnumConverter\EnumConverter.csproj" /t:ReBuild /p:Configuration=Release;TargetFrameworkVersion=v4.5;DefineConstants="TRACE;NET45";OutPutPath=bin\Release\net45\;DocumentationFile=bin\Release\net45\Aliencube.CaseInsensitiveEnumConverter.xml
-"%MSBUILDDIR%msbuild.exe" "02_Apps\ListConverter\ListConverter.csproj" /t:ReBuild /p:Configuration=Release;TargetFrameworkVersion=v4.5;DefineConstants="TRACE;NET45";OutPutPath=bin\Release\net45\;DocumentationFile=bin\Release\net45\Aliencube.CommaDelimitedListConverter.xml
+"%MSBUILDDIR%msbuild.exe" "src\ConfigurationValueConverter\ConfigurationValueConverter.csproj" /t:ReBuild /p:Configuration=Release;TargetFrameworkVersion=v4.5;DefineConstants="TRACE;NET45";OutPutPath=bin\Release\net45\;DocumentationFile=bin\Release\net45\Aliencube.ConfigurationValueConverter.xml
 
 mkdir build
 del "build\*.nupkg"
 
 ::SET API KEY
-"tools\nuget.exe" setApiKey %1
+REM "tools\nuget.exe" setApiKey %1
 
 ::PACK
-"tools\nuget.exe" pack "02_Apps\EnumConverter\EnumConverter.nuspec" -OutputDirectory build
-"tools\nuget.exe" pack "02_Apps\ListConverter\ListConverter.nuspec" -OutputDirectory build
+"tools\nuget.exe" pack "src\ConfigurationValueConverter\ConfigurationValueConverter.nuspec" -OutputDirectory build
 
 ::DEPLOY
-"tools\nuget.exe" push "build\*.nupkg"
+REM "tools\nuget.exe" push "build\*.nupkg"
 
 goto:eof
 ::ERRORS

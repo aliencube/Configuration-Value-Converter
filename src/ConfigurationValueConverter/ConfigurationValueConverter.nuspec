@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Aliencube.ConfigurationValueConverter</id>
+    <version>$version$</version>
+    <title>Configuration Value Converter</title>
+    <authors>Aliencube Community</authors>
+    <owners>justinyoo</owners>
+    <licenseUrl>https://github.com/aliencube/Configuration-Value-Converter/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/aliencube/Configuration-Value-Converter</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <summary>
+      This provides a converter library that converts configuration value to enum or list.
+    </summary>
+    <description>
+      <![CDATA[
+      This provides a converter library that converts configuration value to enum or list.
+      ]]>
+    </description>
+    <copyright>Aliencube Community. All rights reserved.</copyright>
+    <tags>Aliencube, TypeConverter, System.Configuration, Enum, List, Flags</tags>
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="bin\Release\**\Aliencube.ConfigurationValueConverter.*" target="lib" />
+  </files>
+</package>

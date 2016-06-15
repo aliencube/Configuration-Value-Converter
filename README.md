@@ -1,17 +1,13 @@
 # Configuration Value Converter #
 
+[![Build status](https://ci.appveyor.com/api/projects/status/g2jspuboqh7i7x5k/branch/master?svg=true)](https://ci.appveyor.com/project/justinyoo/configuration-value-converter/branch/master)
+
 **Configuration Value Converter (CVC)** provides configuration value converters for configuration sections from `App.config` or `Web.config`.
-
-
-## Package Status ##
-
-* **Case Insensitive Enum Value Converter** [![](https://img.shields.io/nuget/v/Aliencube.CaseInsensitiveEnumConverter.svg)](https://www.nuget.org/packages/Aliencube.CaseInsensitiveEnumConverter/) [![](https://img.shields.io/nuget/dt/Aliencube.CaseInsensitiveEnumConverter.svg)](https://www.nuget.org/packages/Aliencube.CaseInsensitiveEnumConverter/)
-* **Comma Delimited List Value Converter** [![](https://img.shields.io/nuget/v/Aliencube.CommaDelimitedListConverter.svg)](https://www.nuget.org/packages/Aliencube.CommaDelimitedListConverter/) [![](https://img.shields.io/nuget/dt/Aliencube.CommaDelimitedListConverter.svg)](https://www.nuget.org/packages/Aliencube.CommaDelimitedListConverter/)
 
 
 ## Getting Started ##
 
-The following `App.config` sample can be found at [https://github.com/aliencube/Configuration-Value-Converter/blob/master/SourceCodes/01_Configs/ConfigurationValueConverter.Configs/App.config](https://github.com/aliencube/Configuration-Value-Converter/blob/master/SourceCodes/01_Configs/ConfigurationValueConverter.Configs/App.config)
+The following `App.config` sample can be found at [https://github.com/aliencube/Configuration-Value-Converter/blob/master/src/ConfigurationValueConverter.Configs/App.config](https://github.com/aliencube/Configuration-Value-Converter/blob/master/src/ConfigurationValueConverter.Configs/App.config)
 
 ```xml
 <configuration>
@@ -20,7 +16,7 @@ The following `App.config` sample can be found at [https://github.com/aliencube/
   </configSections>
 
   <converterSettings>
-    <product status="active" productIds="1,2,3" />
+    <product status="active" productIds="1,2,3" status="ProductA|ProductC" />
   </converterSettings>
 </configuration>
 ```
@@ -45,11 +41,20 @@ public class ProductElement : ConfigurationElement
     get { return (List<int>)this["productIds"]; }
     set { this["productIds"] = value; }
   }
+
+  [ConfigurationProperty("types", IsRequired = true)]
+  [TypeConverter(typeof(PipeDelimitedFlaggedEnumConverter<ProductTypes>))]
+  public ProductTypes Types
+  {
+      get { return (ProductTypes)this["types"]; }
+      set { this["types"] = value; }
+  }
 }
 ```
 
 * Once the `TypeConverter` attribute class is declared, with `CaseInsensitiveEnumConverter<TEnum>` type, any value such as `ACTIVE`, `Active`, or `active` can be set.
 * Once the `TypeConverter` attribute class is declared, with `CommaDelimitedListConverter<T>` type, any value such as `1,2,3` can be converted to a `List<int>` object.
+* Once the `TypeConverter` attribute class is declared, with `PipeDelimitedFlaggedEnumConverter<TEnum>` type, enum values delimited by a pipe sign (`|`) can be converted to a flagged enum.
 
 
 ## Contribution ##

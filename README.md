@@ -1,6 +1,6 @@
 # Configuration Value Converter #
 
-[![Build status](https://ci.appveyor.com/api/projects/status/g2jspuboqh7i7x5k/branch/master?svg=true)](https://ci.appveyor.com/project/justinyoo/configuration-value-converter/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/g2jspuboqh7i7x5k/branch/dev?svg=true)](https://ci.appveyor.com/project/justinyoo/configuration-value-converter/branch/dev) | [![](https://img.shields.io/nuget/v/Aliencube.ConfigurationValueConverter.svg)](https://www.nuget.org/packages/Aliencube.ConfigurationValueConverter)
 
 **Configuration Value Converter (CVC)** provides configuration value converters for configuration sections from `App.config` or `Web.config`.
 
